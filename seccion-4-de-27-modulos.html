@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <title>Sección 4 de 27 - Módulos</title>
+  </head>
+
+  <body>
+    <header class="text-center">
+      <h1>Sección 4 de 27 - Módulos</h1>
+    </header>
+    <main class="container">
+      <hr />
+
+      <div class="row">
+        <div class="col">
+          <ul class="list-group">
+            <a href="./index.html" class="list-group-item">Volver</a>
+          </ul>
+        </div>
+      </div>
+
+      <hr />
+
+      <section class="row">
+        <article class="col">
+          <h2>Sección 30 de 343 - Introduccion a la sección</h2>
+          
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 31 de 343 -  Temas puntuales que aprenderemos en esta seccion</h2>
+          
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 32 de 343 - Creando nuestro primer modulo</h2>
+          <pre class="prettyprint">
+                  
+            > ng g m pages/pages --flat
+            > ng g m shared/shared --flat
+          </pre>
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 33 de 343 - Tarea práctica #3 - Creación de un modulo personalizado</h2>
+          <pre class="prettyprint">
+                  
+            > ng g m auth/auth --flat
+
+          </pre>
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 34 de 343 - Resolución de la tarea practica #3 Creacion de un modulo personalizado</h2>
+          
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 35 de 343 - Rutas Hijas - For child()</h2>
+          <pre class="prettyprint">
+            const routes: Routes = [
+            {
+              path: '',
+              component: PagesComponent,
+              children: [
+                { path: 'dashboard', component: DashboardComponent },
+                { path: 'progress', component: ProgressComponent },
+                { path: 'grafica1', component: Grafica1Component },
+                { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+              ],
+            }
+          ];
+          
+          @NgModule({
+            imports: [RouterModule.forChild(routes)],
+            exports: [RouterModule],
+          })
+          export class PagesRoutingModule {}                  
+          </pre>
+
+          <pre class="prettyprint">
+                  
+            const routes: Routes = [
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegisterComponent },
+            { path: '**', component: NopagefoundComponent },
+          ];
+          
+          @NgModule({
+            imports: [
+              RouterModule.forRoot(routes),
+              PagesRoutingModule
+            ],
+            exports: [RouterModule],
+          })
+          export class AppRoutingModule {}
+          </pre>
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 36 de 343 - AuthRoutingModule</h2>
+          
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 37 de 343 - Colocando nuestras rutas a partir de un path especifico</h2>
+          
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 38 de 343 - Guardar los cambios en cambios y crear un tag de produccion</h2>
+          
+        </article>
+      </section>
+
+      <hr>
+      
+      <section class="row">
+        <article class="col">
+          <h2>Sección 39 de 343 - Codigo de la sección</h2>
+          <p>
+            <a href="https://github.com/Klerith/angular-adv-adminpro/releases/tag/v1.5.0">https://github.com/Klerith/angular-adv-adminpro/releases/tag/v1.5.0</a>
+          </p>
+        </article>
+      </section>
+
+    </main>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

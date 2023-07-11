@@ -82,6 +82,148 @@
         </section>
         <hr>
 
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 19 de 343 - Header, Sidebar, Breadcrumbs y contenedor principal</h2>
+            
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 20 de 343 - Implementando las rutas principales</h2>
+            <pre class="prettyprint">
+                    
+                > ng g m appRouting --flat
+                > ng g c pages/progress -s --skip-tests
+                > ng g c pages/grafica1 -s --skip-tests
+            </pre>
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 21 de 343 - Implementar rutas secundarias</h2>
+            <pre class="prettyprint">
+                    
+                > ng g c pages/pages --flat --skip-tests -s
+            </pre>
+
+            <pre class="prettyprint">
+                    
+                const routes: Routes = [
+                    {
+                        path: '',
+                        component: PagesComponent,
+                        children: [
+                        { path: 'dashboard', component: DashboardComponent },
+                        { path: 'progress', component: ProgressComponent },
+                        { path: 'grafica1', component: Grafica1Component },
+                        { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+                        ]
+                    },
+                    { path: 'login', component: LoginComponent },
+                    { path: 'register', component: RegisterComponent },
+                    { path: '**', component: NopagefoundComponent },
+                ]
+            </pre>
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 22 de 343 - separando el login del template</h2>
+            
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 23 de 343 - Tarea práctica #2 - Register Template</h2>
+            
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 24 de 343 - REsolucion de la tarea practica#2 - REgister Template</h2>
+            
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 25 de 343 - Aceleración de las animaciones</h2>
+            <pre class="prettyprint">
+                    
+                .fast {
+                    -webkit-animation-duration: 0.3s;
+                    animation-duration: 0.3s;
+                    -webkit-animation-fill-mode: both;
+                    animation-fill-mode: both;
+                }
+
+            </pre>
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 26 de 343 - Pagina 404</h2>
+            
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 27 de 343 - Respaldo de nuestro trabajo en GitHub</h2>
+            
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 28 de 343 - Crear release de produccion</h2>
+            <pre class="prettyprint">
+                    
+                > git tag -a v1.0.0 -m "Diseño listo"
+                > git tag
+                > git push --tags
+            </pre>
+          </article>
+        </section>
+
+        <hr>
+        
+        <section class="row">
+          <article class="col">
+            <h2>Sección 29 de 343 - codigo fuente</h2>
+            <p>
+                <a href="https://github.com/Klerith/angular-adv-adminpro/releases/tag/v1.0.0">https://github.com/Klerith/angular-adv-adminpro/releases/tag/v1.0.0</a>
+            </p>
+          </article>
+        </section>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
