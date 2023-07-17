@@ -42,8 +42,291 @@
       </article>
     </section>
 
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 73 de 343 - Introducción a las promesas y observables</h2>
+        
+      </article>
+    </section>
 
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 74 de 343 - Reforzamiento sobre promesas</h2>
+        <pre class="prettyprint">
+                
+        ngOnInit(): void {
+          this.getUsuarios().then((usuarios) => {
+            console.log({ usuarios });
+          });
+        }
+      
+        getUsuarios() {
+          return new Promise((resolve) => {
+            fetch('https://reqres.in/api/users')
+              .then((resp) => resp.json())
+              .then((body) => resolve(body.data));
+          });
+        }
+        </pre>
+      </article>
+    </section>
 
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 76 de 343 - Componente rXJS y arreglo en el menu</h2>
+        
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 77 de 343 - Crear un observable manualmente</h2>
+        <pre class="prettyprint">
+                
+          const obs$ = new Observable((observer) => {
+            let index = 1;
+            const intervalo = setInterval(() => {
+              observer.next('tick ' + index);
+              index++;
+      
+              if (index === 4) {
+                clearInterval(intervalo);
+                observer.complete();
+              }
+      
+              if (index === 2) {
+                clearInterval(intervalo);
+                observer.error('ERROR');
+              }
+            }, 300);
+          });
+      
+          obs$.subscribe({
+            next: (data) => console.log({ data }),
+            error: (error) => console.error({ error }),
+            complete: () => console.info('Observer Terminado')
+          });
+        </pre>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 78 de 343 - Metodo retry de un observable</h2>
+        <pre class="prettyprint">
+                
+          let index = 1;
+          const obs$ = new Observable((observer) => {
+            const intervalo = setInterval(() => {
+              observer.next('tick ' + index);
+              index++;
+      
+              if (index === 4) {
+                clearInterval(intervalo);
+                observer.complete();
+              }
+      
+              if (index === 2) {
+                clearInterval(intervalo);
+                observer.error('ERROR');
+              }
+            }, 300);
+          });
+      
+          obs$.pipe(retry(1)).subscribe({
+            next: (data) => console.log({ data }),
+            error: (error) => console.error({ error }),
+            complete: () => console.info('Observer Terminado'),
+          });
+        </pre>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 79 de 343 - Funciones que retornen observables</h2>
+        <pre class="prettyprint">
+                
+          constructor() {
+            const obs$ = this.retornaObservable();
+        
+            obs$.pipe(retry(1)).subscribe({
+              next: (data) => console.log({ data }),
+              error: (error) => console.error({ error }),
+              complete: () => console.info('Observer Terminado'),
+            });
+          }
+        
+          retornaObservable(): Observable&ltnumber> {
+            let index = 1;
+            return new Observable&ltnumber>((observer) => {
+              const intervalo = setInterval(() => {
+                observer.next(index);
+                index++;
+        
+                if (index === 4) {
+                  clearInterval(intervalo);
+                  observer.complete();
+                }
+        
+                if (index === 2) {
+                  clearInterval(intervalo);
+                  observer.error('ERROR');
+                }
+              }, 300);
+            });
+          }
+        </pre>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 80 de 343 - Observador map de los observables</h2>
+        <pre class="prettyprint">
+                
+          retornaIntervalo(): Observable&ltnumber> {
+            return interval(1000).pipe(
+              take(4),
+              map((valor) => valor + 1)
+            );
+          }
+        </pre>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 81 de 343 - Operador Filter</h2>
+        <pre class="prettyprint">
+                
+          retornaIntervalo(): Observable&ltnumber> {
+            return interval(100).pipe(
+              take(10),
+              map(valor => valor + 1),
+              filter(valor => valor % 2 === 0)
+            );
+          }
+        </pre>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 82 de 343 - Mas información sobre operadores rXJS</h2>
+        <p>
+          <a href="https://reactivex.io/documentation/operators.html">https://reactivex.io/documentation/operators.html</a>
+        </p>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 83 de 343 - Llamar el unsubscribe</h2>
+        <pre class="prettyprint">
+                
+          public intervalSubs!: Subscription;
+
+          constructor() {
+            this.intervalSubs = this.retornaIntervalo().subscribe(console.log);
+          }
+          
+          ngOnDestroy(): void {
+              this.intervalSubs.unsubscribe()
+          }
+        </pre>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 84 de 343 - Breadcrumbs usando observables y parametros de rutas</h2>
+        <pre class="prettyprint">
+                
+          const routes: Routes = [
+          {
+            path: 'dashboard',
+            component: PagesComponent,
+            children: [
+              { path: '', component: DashboardComponent, data: { titulo: 'Dashboard' } },
+              { path: 'progress', component: ProgressComponent, data: { titulo: 'ProgressBar' } },
+              { path: 'grafica1', component: Grafica1Component, data: { titulo: 'Gráfica # 1' } },
+              { path: 'account-settings', component: AccountSettingsComponent, data: { titulo: 'Ajustes' } },
+              { path: 'promesas', component: PromesasComponent, data: { titulo: 'Promesas' } },
+              { path: 'rxjs', component: RxjsComponent, data: { titulo: 'RxJs' } },
+            ],
+          }
+        ];
+        </pre>
+
+        <pre class="prettyprint">
+                
+          this.router.events
+          .pipe(
+            filter((event) => event instanceof ActivationEnd),
+            filter(
+              (event) => (event as ActivationEnd).snapshot.firstChild === null
+            ),
+            map((event) => (event as ActivationEnd).snapshot.data)
+          )
+          .subscribe(({ titulo }) => {
+            this.titulo = titulo;
+            document.title = 'AdminPro - ' +  titulo
+          });
+        </pre>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 85 de 343 - Optimizaciones del Breadcrumbs</h2>
+        <p>Implementar el ngDestroy y unsubscribe</p>
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 86 de 343 - Guardar cambios en Github - Seccion 8</h2>
+        
+      </article>
+    </section>
+
+    <hr>
+    
+    <section class="row">
+      <article class="col">
+        <h2>Sección 87 de 343 - Codigo de la sección</h2>
+        <p>
+          <a href="https://github.com/Klerith/angular-adv-adminpro/releases/tag/v1.8.0">https://github.com/Klerith/angular-adv-adminpro/releases/tag/v1.8.0</a>
+        </p>
+      </article>
+    </section>
 
 
 
